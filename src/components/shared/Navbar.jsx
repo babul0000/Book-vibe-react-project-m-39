@@ -5,13 +5,21 @@ const Navbar = () => {
 const links = <>
 <li>
     
-    <NavLink to={"/"}>Home</NavLink>
+    <NavLink to={"/"} 
+    className={({isActive}) =>
+    ` font-bold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`}>Home</NavLink>
 </li>
 <li>
-    <NavLink to={"/books"}>Books</NavLink>
+    <NavLink to={"/books"} 
+    className={({isActive}) => 
+        ` font-bold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`}
+    >Books</NavLink>
 </li>
 <li>
-    <NavLink to={"/page-to-read"}>page to read</NavLink>
+    <NavLink to={"/page-to-read"}
+    className={({isActive}) => 
+        ` font-bold ${isActive ? "text-green-500 border border-green-500" : ""}`}
+    >page to read</NavLink>
 </li>
 </>
 
@@ -50,8 +58,10 @@ const links = <>
           {links}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end gap-3 ">
+        <button className="btn btn-primary">Sign In</button>
+        <button className="btn btn-accent text-white">Sign Up</button>
+        
       </div>
     </div>
   );
