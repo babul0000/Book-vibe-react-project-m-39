@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 
 const BookDetails = () => {
@@ -12,8 +12,20 @@ const books = useLoaderData();
 const data = books.find(book => book.bookId == parseInt(bookId));
 console.log(data);
 
-  
 
+const [storeBook, setStoreBook] = useState([]);
+  
+const handleMarkRead = (currentBook) => {
+
+  const isExistBook = storeBook.find(
+    (book) => book.bookId == currentBook.bookId
+  );
+  if(isExistBook) {
+    alert ("this is book id")
+  }else{
+    setStoreBook([...storeBook, currentBook])
+  }
+}
   
 
   return (
@@ -95,7 +107,7 @@ console.log(data);
 
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <button className="btn w-5/12 transition">
+            <button onClick={() => handleMarkRead(data)} className="btn w-5/12 transition">
               Read
             </button>
             <button className="btn btn-primary w-5/12 transition">

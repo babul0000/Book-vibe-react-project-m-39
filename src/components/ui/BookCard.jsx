@@ -4,38 +4,58 @@ import { NavLink } from 'react-router';
 
 const BookCard = ({book}) => {
   return (
-    <NavLink to={`/bookDetails/${book.bookId}`} className="card bg-base-100 w-96 shadow-sm my-5">
-  <figure>
-    <img 
-    className="w-50 h-70 py-5"
-      src={book.image}
-      alt="Shoes" />
-  </figure>
-  <div className="card-body">
-  
-      <div className="flex gap-3">
-        {
-          book.tags.map((tag, index) => (
-            <div key={index} className= "border border-green-300 font-bold text-green-500 py-1 px-2 rounded-md">{tag}</div>
-          ))
-        }
-        <div className= "border border-green-300 font-bold text-green-500 py-1 px-2 rounded-md">Young Adult</div>
+    <NavLink 
+      to={`/bookDetails/${book.bookId}`} 
+      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 w-full"
+    >
+      {/* Image Section - Smaller Height */}
+      <div className="h-[260px] bg-gray-50 flex items-center justify-center p-6 border-b border-gray-100">
+        <img 
+          src={book.image} 
+          alt={book.bookName}
+          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
 
-      <div className="border border-green-300 font-bold text-green-500 py-1 px-2 rounded-md">Identity</div>
+      {/* Content Section */}
+      <div className="p-5">
+        
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {book.tags?.map((tag, index) => (
+            <span 
+              key={index}
+              className="text-xs font-medium px-3 py-1 bg-green-100 text-green-700 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Title */}
+        <h3 className="font-semibold text-[16px] leading-tight text-gray-900 line-clamp-2 mb-2 min-h-[40px]">
+          {book.bookName}
+        </h3>
+
+        {/* Author */}
+        <p className="text-sm text-gray-600 mb-4">
+          {book.author}
+        </p>
+
+        {/* Genre */}
+        <p className="text-xs text-gray-500 mb-5 border-b border-dashed border-gray-200 pb-4">
+          {book.category}
+        </p>
+
+        {/* Rating */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <span className="text-yellow-400 text-xl">★</span>
+            <span className="font-semibold text-gray-900 text-base">{book.rating}</span>
+          </div>
+        </div>
       </div>
-    
-    <p className="text-2xl font-bold">{book.bookName}</p>
-    <p className="text-md">{book.author}</p>
-    
-    <div className="card-actions justify-between border-t-1 border-dashed pt-4">
-      <div className="badge">{book.category}</div>
-      <div className="flex ">
-        <div className="badge text-md font-medium">{book.rating} </div>
-        <span><Star/></span>
-      </div>
-    </div>
-  </div>
-</NavLink>
+    </NavLink>
   );
 };
 
