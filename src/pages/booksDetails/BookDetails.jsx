@@ -13,7 +13,7 @@ const books = useLoaderData();
 const data = books.find(book => book.bookId == parseInt(bookId));
 console.log(data);
 
-const {handleMarkRead, storeBook} = useContext(BookContext)
+const {handleMarkRead, handleWishList, storeBook} = useContext(BookContext)
 console.log(handleMarkRead, storeBook);
 
 
