@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { BookContext } from '../../components/bookContext/BookContext';
 
 const BookDetails = () => {
   const {bookId} = useParams();
@@ -12,20 +13,11 @@ const books = useLoaderData();
 const data = books.find(book => book.bookId == parseInt(bookId));
 console.log(data);
 
+const {handleMarkRead, storeBook} = useContext(BookContext)
+console.log(handleMarkRead, storeBook);
 
-const [storeBook, setStoreBook] = useState([]);
-  
-const handleMarkRead = (currentBook) => {
 
-  const isExistBook = storeBook.find(
-    (book) => book.bookId == currentBook.bookId
-  );
-  if(isExistBook) {
-    alert ("this is book id")
-  }else{
-    setStoreBook([...storeBook, currentBook])
-  }
-}
+
   
 
   return (
@@ -110,7 +102,7 @@ const handleMarkRead = (currentBook) => {
             <button onClick={() => handleMarkRead(data)} className="btn w-5/12 transition">
               Read
             </button>
-            <button className="btn btn-primary w-5/12 transition">
+            <button onClick={() => handleWishList(data)} className="btn btn-primary w-5/12 transition">
               Wishlist
             </button>
           </div>

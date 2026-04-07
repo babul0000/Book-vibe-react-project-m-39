@@ -9,6 +9,8 @@ import MainLayout from './layout/MainLayout';
 import Homepage from './pages/homepage/Homepage';
 import Books from './pages/books/Books';
 import { router } from './routes/Routes';
+import BookProvider from './components/bookContext/BookContext';
+import { ToastContainer } from 'react-toastify';
 // import BookContext from './components/bookContext/BookContext';
 
 
@@ -18,9 +20,12 @@ import { router } from './routes/Routes';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <BookContext> */}
+    <BookProvider>
         <RouterProvider router={router} />,
-    {/* </BookContext> */}
+        <ToastContainer />
+    </BookProvider>
+        
+    
     
   </StrictMode>,
 )
